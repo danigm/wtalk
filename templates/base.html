@@ -55,6 +55,7 @@
                     <a href="http://wadobo.com">
                         <img id="danigm" alt="powered by wadobolabs" src="/static/img/wadobolabs.png">
                     </a>
+                    <button id="install" onClick="install()">Install this app</button>
                 </div>
             </div>
 
@@ -87,6 +88,30 @@
 
         <script type="text/javascript">
             Wtalk.main();
+
+
+            function checkInstall () {
+                var request = navigator.mozApps.getSelf();
+                var button = document.getElementById('install');
+
+                request.onsuccess = function() {
+                    if (!request.result) {
+                        button.style.display = 'block';
+                    }
+                };
+            }
+
+            function install () {
+                var request = navigator.mozApps.install("{{ url_for('static', filename='manifest.webapp') }}");
+                request.onsuccess = function() {
+                    alert("GREAT");
+                };
+                request.onerror = function() {
+                    alert("Whoops: " + this.error.name);
+                };
+            }
+
+            checkInstall();
         </script>
     </body>
 </html>

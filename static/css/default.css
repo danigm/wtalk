@@ -22,3 +22,8 @@ body {
     background-color: #aaa;
     padding-left: 20px;
 }
+
+#install {
+    font-size: 40pt;
+    display: none;
+}
