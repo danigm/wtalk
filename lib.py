@@ -1,3 +1,4 @@
+import time
 import datetime
 import random
 import string
@@ -41,6 +42,8 @@ def connect(username, passwd, domain, server, port):
         client.messages.append(Message(f, msg))
 
     client.RegisterHandler('message', xmpp_message)
+    # caching contact list
+    contact_list(client)
     return client
 
 
@@ -51,10 +54,14 @@ def send(client, to, msg):
 
 
 def contact_list(client):
-    client.getRoster()
-    contacts = client.Roster.getItems()
-    contacts = [(c, client.Roster.getName(c)) for c in client.Roster.getItems() if client.Roster.getShow(c)]
-    return contacts
+    roster = client.getRoster()
+    contacts = roster.getItems()
+    cx = []
+    for c in contacts:
+        res = roster.getResources(c)
+        if res:
+            cx.append((c, client.Roster.getName(c)))
+    return cx
 
 
 def newtoken():

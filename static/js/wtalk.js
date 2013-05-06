@@ -90,15 +90,16 @@
     Wtalk.getContacts = function() {
         function cb(data) {
             if (data.status == 'ok') {
+                $("#contacts").empty();
                 for (var i=0; i<data.contacts.length; i++) {
                     var c = data.contacts[i];
-                    var contactlink = $('<a href="#" data-val="'+c[0]+'">'+c[1]+' ('+c[0]+')</a>');
+                    var contactlink = $('<a class="btn btn-inverse" href="#" data-val="'+c[0]+'">'+c[1]+' ('+c[0]+')</a>');
                     contactlink.click(function() {
                         $("#to").html($(this).html());
                         $("#to").data('val', $(this).data('val'));
                         return false;
                     });
-                    var contact = $("<li></li>");
+                    var contact = $('<div class="contact"></div>');
                     contact.append(contactlink);
                     $("#contacts").append(contact);
                 }
