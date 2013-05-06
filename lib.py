@@ -53,7 +53,7 @@ def send(client, to, msg):
 def contact_list(client):
     client.getRoster()
     contacts = client.Roster.getItems()
-    contacts = [(c, client.Roster.getName(c)) for c in client.Roster.getItems()]
+    contacts = [(c, client.Roster.getName(c)) for c in client.Roster.getItems() if client.Roster.getShow(c)]
     return contacts
 
 
