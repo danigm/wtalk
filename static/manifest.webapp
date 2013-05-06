@@ -9,7 +9,7 @@
     "launch_path":"/",
     "permissions": {
             "desktop-notification":{}
-    }
+    },
     "icons":{
         "32":"/static/img/icon32.png",
         "64":"/static/img/icon64.png",
