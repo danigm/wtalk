@@ -11,8 +11,12 @@ class Message:
         self.msg = msg
         self.date = datetime.datetime.now()
 
-    def serialize(self):
+    def serialize(self, client=None):
+        fromn = ''
+        if client:
+            fromn = client.Roster.getName(self.f.getStripped())
         data = {'from': self.f.getStripped(),
+                'fromn': fromn,
                 'msg': self.msg,
                 'date': self.date.strftime("%d/%m/%Y %H:%M:%S")}
         return data
@@ -22,7 +26,10 @@ class Message:
 def connect(username, passwd, domain, server, port):
     client = xmpp.Client(domain, debug=[])
     client.connect(server=(server, port))
-    client.auth(username, passwd)
+    auth = client.auth(username, passwd)
+    if not auth:
+        return None
+
     client.sendInitPresence()
     client.messages = []
 
@@ -46,6 +53,7 @@ def send(client, to, msg):
 def contact_list(client):
     client.getRoster()
     contacts = client.Roster.getItems()
+    contacts = [(c, client.Roster.getName(c)) for c in client.Roster.getItems()]
     return contacts
 
 

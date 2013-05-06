@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <title>WTalk</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/wtalk.png') }}">
+
         <!-- lib css -->
         <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
@@ -11,25 +13,80 @@
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.0.0.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
 
+        <!-- custom css -->
+        <link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet">
+
         <!-- custom js -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/wtalk.js') }}"></script>
     </head>
     <body>
         <div class="container-fluid">
 
+            <!-- header -->
+            <div id="header-row" class="row-fluid">
+                <div class="span12">
+                    <h1><img src="{{ url_for('static', filename='img/icon64.png') }}"/> WTalk</h1>
+                    <h2 id="subtitle"></h2>
+                </div>
+            </div>
+
             <!-- login form -->
             <div id="login-row" class="row-fluid">
                 <div class="span12">
-                    <form method="POST" action="">
+                    <form class="form form-inline" method="POST" action="">
                         <input type="text" name="username" placeholder="username"/>
-                        <input type="text" name="domain" value="gmail.com"/>
-                        <input type="text" name="server" value="talk.google.com"/>
-                        <input type="text" name="port" value="5222"/>
+                        <br/>
                         <input type="password" name="password" placeholder="password"/>
-                        <button class="btn">Login</button>
+                        <br/>
+                        <input type="text" name="domain" value="gmail.com" placeholder="domain"/>
+                        <br/>
+                        <input type="text" name="server" value="talk.google.com" placeholder="server"/>
+                        <br/>
+                        <input type="text" name="port" value="5222" placeholder="port"/>
+                        <br/>
+                        <input type="checkbox" id="remember" name="remember" checked="checked"/>
+                        <label for="remember">Remember me</label>
+                        <br/>
+                        <button id="login" class="btn">Login</button>
+                        <a href="#" id="facebook"><img src="{{ url_for('static', filename='img/facebook.png') }}"/></a>
+                        <a href="#" id="gtalk"><img src="{{ url_for('static', filename='img/gtalk.png') }}"/></a>
                     </form>
+
+                    <a href="http://wadobo.com">
+                        <img id="danigm" alt="powered by wadobolabs" src="/static/img/wadobolabs.png">
+                    </a>
+                </div>
+            </div>
+
+            <!-- talk -->
+            <div id="talk-row" class="row-fluid">
+                <div class="span12">
+                    <div id="messages">
+                    </div>
+                </div>
+            </div>
+
+            <!-- contacts -->
+            <div id="contacts-row" class="row-fluid">
+                <div class="span12">
+                    <ul class="nav nav-list" id="contacts">
+                        <li class="nav-header">Contacts</li>
+                    </ul>
                 </div>
             </div>
 
         </div>
+
+        <div id="input">
+            <button class="btn" id="showcontacts"><i class="icon-user"></i></button>
+            <span class="label label-important" id="to"></span>
+            <br/>
+            <input type="text" id="textinput"/>
+            <button class="btn" id="send">Send</button>
+        </div>
+
+        <script type="text/javascript">
+            Wtalk.main();
+        </script>
     </body>
 </html>

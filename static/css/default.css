@@ -1,0 +1,24 @@
+body {
+    padding: 20px;
+    background-color: #888;
+}
+
+.container-fluid {
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+#textinput {
+    margin-top: 10px;
+}
+
+#input {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background-color: #aaa;
+    padding-left: 20px;
+}

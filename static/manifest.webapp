@@ -1,0 +1,18 @@
+{
+    "name":"WTalk",
+    "description":"XMPP client",
+    "version": "1.0",
+    "developer": {
+        "name":"danigm <danigm@wadobo.com>",
+        "url":"http://wadobo.com"
+    },
+    "launch_path":"/",
+    "permissions": {
+            "desktop-notification":{}
+    }
+    "icons":{
+        "32":"/static/img/icon32.png",
+        "64":"/static/img/icon64.png",
+        "128":"/static/img/icon128.png"
+    }
+}
